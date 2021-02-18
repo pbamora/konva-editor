@@ -46,7 +46,6 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap"
             rel="stylesheet"
           />
-          <title>Create Next App</title>
           <link rel="icon" href="/favicon.ico" />
           <body>
             <Main />

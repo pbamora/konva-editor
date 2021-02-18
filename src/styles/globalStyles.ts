@@ -12,20 +12,23 @@ const GlobalStyles = createGlobalStyle`
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.text};
     -webkit-font-smoothing: antialiased;
-    font: 400 16px Quicksand, sans-serif;
+    font-family: 'Quicksand', serif;
+    font-size: 16px;
+    font-weight: 400;
   }
 
   h1, h2, h3, h4, h5, h6, strong {
     color: 'black';
-    font: 700 Quicksand, sans-serif
+    font-family: 'Quicksand', serif;
+    font-size: 16px;
+    font-weight: 700;
   }
 
-  button {
-    cursor: pointer;
-  }
 
   border-style, input, button {
-    font: 500 Quicksand, sans-serif
+    font-family: Quicksand;
+    font-size: 14px;
+    font-weight: 600;
   }
 
 `

@@ -6,3 +6,7 @@ export const Container = styled.div`
 
   align-items: stretch;
 `
+export const Padding = styled.div`
+  height: 72px;
+  display: flex;
+`
