@@ -30,7 +30,7 @@ export const Menu = styled.div`
 `
 
 export const Box = styled.div`
-  height: 15px;
+  height: 25px;
 `
 
 export const ContentMenu = styled.div`
