@@ -14,16 +14,10 @@ export const Menu = styled.div`
 
 export const ContentMenu = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  margin-top: 50px;
+  background: ${props => props.theme.colors.primary};
+  overflow-y: auto;
   background-color: ${props => props.theme.colors.secondary};
 
-  ul {
-    display: flex;
-    justify-content: center;
-  }
-
-  width: 100%;
-  max-width: 320px;
+  width: 430px;
 `

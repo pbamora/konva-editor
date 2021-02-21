@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from 'react'
 import { ContentMenu, Menu } from './styles/SideMenu'
+import { List, Card, Layout, Row, Col } from 'antd'
 import { Padding } from '../styles/index'
+import theme from '../styles/theme'
 import {
   IoImageOutline,
   IoTextOutline,
@@ -10,6 +12,7 @@ import {
 import DinamicButton from '../utils/components/DinamicButtons'
 
 interface Images {
+  id: number
   name: string
   url: string
   heigth: number
@@ -23,6 +26,8 @@ interface SideMenuProps {
 const SideMenu: React.FC<SideMenuProps> = ({ list }) => {
   const typeButton = ['Imagens', 'Textos', 'Elementos', 'Uploads']
   const [selected, isSelected] = useState<string>(typeButton[0])
+
+  const { Sider } = Layout
 
   return (
     <>
@@ -61,17 +66,22 @@ const SideMenu: React.FC<SideMenuProps> = ({ list }) => {
           <IoCloudUploadOutline size={26} />
         </DinamicButton>
       </Menu>
+
       <ContentMenu>
-        {list &&
-          list.map(item => {
-            return (
-              <ul key={item.width}>
-                <li>
-                  <img src={item.url} alt={item.name} width={200} />
-                </li>
-              </ul>
-            )
-          })}
+        <Row gutter={[8, 8]}>
+          <List
+            dataSource={list}
+            renderItem={item => (
+              <List.Item>
+                <Col span={12}>
+                  <Card>
+                    <img src={item.url} alt={item.name} width={180} />
+                  </Card>
+                </Col>
+              </List.Item>
+            )}
+          />
+        </Row>
       </ContentMenu>
     </>
   )
