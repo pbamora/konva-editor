@@ -1,8 +1,13 @@
 import React, { useCallback, useState } from 'react'
 import { ContentMenu, Menu } from './styles/SideMenu'
-import { List, Card, Layout, Row, Col } from 'antd'
+import {
+  Grid,
+  GridList,
+  GridListTile,
+  List,
+  makeStyles
+} from '@material-ui/core'
 import { Padding } from '../styles/index'
-import theme from '../styles/theme'
 import {
   IoImageOutline,
   IoTextOutline,
@@ -19,6 +24,16 @@ interface Images {
   width: number
 }
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    paddingTop: 72,
+  },
+  gridList: {
+    width: 180,
+  }
+}))
+
 interface SideMenuProps {
   list: Array<Images>
 }
@@ -27,7 +42,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ list }) => {
   const typeButton = ['Imagens', 'Textos', 'Elementos', 'Uploads']
   const [selected, isSelected] = useState<string>(typeButton[0])
 
-  const { Sider } = Layout
+  const { root, gridList } = useStyles()
 
   return (
     <>
@@ -68,20 +83,14 @@ const SideMenu: React.FC<SideMenuProps> = ({ list }) => {
       </Menu>
 
       <ContentMenu>
-        <Row gutter={[8, 8]}>
-          <List
-            dataSource={list}
-            renderItem={item => (
-              <List.Item>
-                <Col span={12}>
-                  <Card>
-                    <img src={item.url} alt={item.name} width={180} />
-                  </Card>
-                </Col>
-              </List.Item>
-            )}
-          />
-        </Row>
+        <GridList className={root} cellHeight={180} cols={3}>
+          {list &&
+            list.map(list => (
+              <GridListTile className={gridList} key={list.id}>
+                <img src={list.url} alt={list.name} />
+              </GridListTile>
+            ))}
+        </GridList>
       </ContentMenu>
     </>
   )
