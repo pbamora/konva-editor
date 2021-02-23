@@ -3,13 +3,16 @@ import CanvasScreen from '../components/CanvasScreen'
 import NavBar from '../components/NavBar'
 import SideMenu from '../components/SideMenu'
 import { Container } from '../styles'
-import { images } from '../utils/ListApi'
+import { images, elements } from '../utils/ListApi'
+
+const api = { images, elements }
 
 const Home: React.FC = () => {
   return (
     <Container>
-      <SideMenu list={images} />
+      <SideMenu props={api} />
       <NavBar />
+      <CanvasScreen />
     </Container>
   )
 }

@@ -14,9 +14,15 @@ export const Menu = styled.div`
 
 export const ContentMenu = styled.div`
   display: flex;
-  padding: 20px;
-  background-color: ${props => props.theme.colors.secondary};
-  overflow: auto;
+  flex-direction: column;
 
-  width: 430px;
+  align-items: center;
+  padding: 10px;
+  padding-top: 72px;
+  overflow-y: auto;
+
+  background-color: ${props => props.theme.colors.secondary};
+
+  width: 100%;
+  max-width: 300px;
 `

@@ -15,6 +15,8 @@ import {
   IoCloudUploadOutline
 } from 'react-icons/io5'
 import DinamicButton from '../utils/components/DinamicButtons'
+import ButtonNavigation from '../utils/components/buttonNavigation'
+import ListImages from './listImages'
 
 interface Images {
   id: number
@@ -24,25 +26,34 @@ interface Images {
   width: number
 }
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    paddingTop: 72,
-  },
-  gridList: {
-    width: 180,
-  }
-}))
-
-interface SideMenuProps {
-  list: Array<Images>
+interface Elements {
+  id: number
+  name: string
+  url: string
+  heigth: number
+  width: number
 }
 
-const SideMenu: React.FC<SideMenuProps> = ({ list }) => {
+interface SideMenuProps {
+  props: {
+    elements: Array<Elements>
+    images: Array<Images>
+  }
+}
+
+const SideMenu: React.FC<SideMenuProps> = ({ props }) => {
   const typeButton = ['Imagens', 'Textos', 'Elementos', 'Uploads']
   const [selected, isSelected] = useState<string>(typeButton[0])
 
-  const { root, gridList } = useStyles()
+  console.log(selected)
+
+  const imageSelected = () => {
+    if (selected === 'Images') {
+      return
+    }
+  }
+
+  console.log(imageSelected())
 
   return (
     <>
@@ -50,6 +61,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ list }) => {
         <Padding />
 
         <DinamicButton
+          onClick={() => imageSelected}
           onSelected={() => isSelected(typeButton[0])}
           selected={selected === 'Imagens' ? true : false}
           text={typeButton[0]}
@@ -81,17 +93,9 @@ const SideMenu: React.FC<SideMenuProps> = ({ list }) => {
           <IoCloudUploadOutline size={26} />
         </DinamicButton>
       </Menu>
-
-      <ContentMenu>
-        <GridList className={root} cellHeight={180} cols={3}>
-          {list &&
-            list.map(list => (
-              <GridListTile className={gridList} key={list.id}>
-                <img src={list.url} alt={list.name} />
-              </GridListTile>
-            ))}
-        </GridList>
-      </ContentMenu>
+      <ListImages
+        props={selected === 'Imagens' ? props.images : props.elements}
+      />
     </>
   )
 }
